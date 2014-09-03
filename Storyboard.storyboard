@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Paystik Nav Main View Controller-->
         <scene sceneID="rBk-9P-rru">
             <objects>
-                <viewController id="jio-65-4fw" sceneMemberID="viewController">
+                <viewController id="jio-65-4fw" customClass="PaystikNavMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XHS-sL-083"/>
                         <viewControllerLayoutGuide type="bottom" id="1XD-A2-j0R"/>
@@ -28,6 +28,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b4u-1K-iG0" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d3a-WM-gTo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

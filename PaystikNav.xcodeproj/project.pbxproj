@@ -21,6 +21,9 @@
 		6852BD9819B7CACA00059565 /* PaystikNavTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BD9719B7CACA00059565 /* PaystikNavTests.m */; };
 		6852BDA219B7CAD900059565 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDA119B7CAD900059565 /* Storyboard.storyboard */; };
 		6852BDA519B7CB0B00059565 /* PaystikNavMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */; };
+		6852BDAA19B7D04600059565 /* PaystikOrgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDA919B7D04600059565 /* PaystikOrgViewController.m */; };
+		6852BDAF19B7D1EB00059565 /* PaystikOrgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */; };
+		6852BDB319B7D6DE00059565 /* UICommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDB219B7D6DE00059565 /* UICommonUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		6852BDA119B7CAD900059565 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
 		6852BDA319B7CB0B00059565 /* PaystikNavMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaystikNavMainViewController.h; sourceTree = "<group>"; };
 		6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaystikNavMainViewController.m; sourceTree = "<group>"; };
+		6852BDA819B7D04600059565 /* PaystikOrgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikOrgViewController.h; path = Modules/Organizations/PaystikOrgViewController.h; sourceTree = "<group>"; };
+		6852BDA919B7D04600059565 /* PaystikOrgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikOrgViewController.m; path = Modules/Organizations/PaystikOrgViewController.m; sourceTree = "<group>"; };
+		6852BDAD19B7D1EB00059565 /* PaystikOrgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikOrgCell.h; path = Modules/Organizations/PaystikOrgCell.h; sourceTree = "<group>"; };
+		6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikOrgCell.m; path = Modules/Organizations/PaystikOrgCell.m; sourceTree = "<group>"; };
+		6852BDB119B7D6DE00059565 /* UICommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommonUtility.h; sourceTree = "<group>"; };
+		6852BDB219B7D6DE00059565 /* UICommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommonUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +126,8 @@
 				6852BD8219B7CAC900059565 /* AppDelegate.m */,
 				6852BDA319B7CB0B00059565 /* PaystikNavMainViewController.h */,
 				6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */,
+				6852BDA719B7D01900059565 /* Modules */,
+				6852BDA619B7CFDF00059565 /* CachedData */,
 				6852BD8419B7CAC900059565 /* Images.xcassets */,
 				6852BD7919B7CAC900059565 /* Supporting Files */,
 			);
@@ -150,6 +161,51 @@
 				6852BD9419B7CACA00059565 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6852BDA619B7CFDF00059565 /* CachedData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CachedData;
+			sourceTree = "<group>";
+		};
+		6852BDA719B7D01900059565 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				6852BDAB19B7D04D00059565 /* Organizations */,
+				6852BDAC19B7D06100059565 /* Campaigns */,
+				6852BDB019B7D6DE00059565 /* Common */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		6852BDAB19B7D04D00059565 /* Organizations */ = {
+			isa = PBXGroup;
+			children = (
+				6852BDA819B7D04600059565 /* PaystikOrgViewController.h */,
+				6852BDA919B7D04600059565 /* PaystikOrgViewController.m */,
+				6852BDAD19B7D1EB00059565 /* PaystikOrgCell.h */,
+				6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */,
+			);
+			name = Organizations;
+			sourceTree = "<group>";
+		};
+		6852BDAC19B7D06100059565 /* Campaigns */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Campaigns;
+			sourceTree = "<group>";
+		};
+		6852BDB019B7D6DE00059565 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6852BDB119B7D6DE00059565 /* UICommonUtility.h */,
+				6852BDB219B7D6DE00059565 /* UICommonUtility.m */,
+			);
+			name = Common;
+			path = Modules/Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,7 +305,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6852BDA519B7CB0B00059565 /* PaystikNavMainViewController.m in Sources */,
+				6852BDB319B7D6DE00059565 /* UICommonUtility.m in Sources */,
+				6852BDAA19B7D04600059565 /* PaystikOrgViewController.m in Sources */,
 				6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */,
+				6852BDAF19B7D1EB00059565 /* PaystikOrgCell.m in Sources */,
 				6852BD7F19B7CAC900059565 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

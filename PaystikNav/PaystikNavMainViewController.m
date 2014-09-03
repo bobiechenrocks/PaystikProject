@@ -7,8 +7,11 @@
 //
 
 #import "PaystikNavMainViewController.h"
+#import "PaystikOrgViewController.h"
 
-@interface PaystikNavMainViewController ()
+@interface PaystikNavMainViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong)UITableView *tableOrgCamp;
 
 @end
 
@@ -27,12 +30,66 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self prepareMainView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareMainView
+{
+    self.title = @"Paystik";
+    
+    if (!self.tableOrgCamp) {
+        CGFloat fStatusNavBarHeight = 64.0f;
+        self.tableOrgCamp = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, fStatusNavBarHeight,
+                                                                          self.view.frame.size.width, self.view.frame.size.height - fStatusNavBarHeight)
+                                                         style:UITableViewStylePlain];
+        [self.view addSubview:self.tableOrgCamp];
+        
+        self.tableOrgCamp.dataSource = self;
+        self.tableOrgCamp.delegate = self;
+    }
+}
+
+#pragma mark - tableview data-source & delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* strReusableId = @"PaystikOrgCampCellId";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:strReusableId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableId];
+    }
+    
+    cell.textLabel.text = (indexPath.row == 0)? @"Organizations" : @"Campaigns";
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        /* organizations */
+        PaystikOrgViewController* orgVC = [[PaystikOrgViewController alloc] init];
+        [self.navigationController pushViewController:orgVC animated:YES];
+    }
+    else {
+        /* campaigns */
+    }
 }
 
 @end
