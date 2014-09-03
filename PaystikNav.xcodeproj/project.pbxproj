@@ -19,6 +19,8 @@
 		6852BD8E19B7CACA00059565 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7619B7CAC900059565 /* UIKit.framework */; };
 		6852BD9619B7CACA00059565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6852BD9419B7CACA00059565 /* InfoPlist.strings */; };
 		6852BD9819B7CACA00059565 /* PaystikNavTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BD9719B7CACA00059565 /* PaystikNavTests.m */; };
+		6852BDA219B7CAD900059565 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDA119B7CAD900059565 /* Storyboard.storyboard */; };
+		6852BDA519B7CB0B00059565 /* PaystikNavMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		6852BD9319B7CACA00059565 /* PaystikNavTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaystikNavTests-Info.plist"; sourceTree = "<group>"; };
 		6852BD9519B7CACA00059565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6852BD9719B7CACA00059565 /* PaystikNavTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaystikNavTests.m; sourceTree = "<group>"; };
+		6852BDA119B7CAD900059565 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
+		6852BDA319B7CB0B00059565 /* PaystikNavMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaystikNavMainViewController.h; sourceTree = "<group>"; };
+		6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaystikNavMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +112,11 @@
 		6852BD7819B7CAC900059565 /* PaystikNav */ = {
 			isa = PBXGroup;
 			children = (
+				6852BDA119B7CAD900059565 /* Storyboard.storyboard */,
 				6852BD8119B7CAC900059565 /* AppDelegate.h */,
 				6852BD8219B7CAC900059565 /* AppDelegate.m */,
+				6852BDA319B7CB0B00059565 /* PaystikNavMainViewController.h */,
+				6852BDA419B7CB0B00059565 /* PaystikNavMainViewController.m */,
 				6852BD8419B7CAC900059565 /* Images.xcassets */,
 				6852BD7919B7CAC900059565 /* Supporting Files */,
 			);
@@ -221,6 +229,7 @@
 			files = (
 				6852BD7D19B7CAC900059565 /* InfoPlist.strings in Resources */,
 				6852BD8519B7CAC900059565 /* Images.xcassets in Resources */,
+				6852BDA219B7CAD900059565 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6852BDA519B7CB0B00059565 /* PaystikNavMainViewController.m in Sources */,
 				6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */,
 				6852BD7F19B7CAC900059565 /* main.m in Sources */,
 			);
