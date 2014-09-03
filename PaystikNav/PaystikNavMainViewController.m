@@ -8,6 +8,7 @@
 
 #import "PaystikNavMainViewController.h"
 #import "PaystikOrgViewController.h"
+#import "PaystikCampViewController.h"
 
 @interface PaystikNavMainViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -42,7 +43,7 @@
 
 - (void)prepareMainView
 {
-    self.title = @"Paystik";
+    self.title = @"evergive";
     
     if (!self.tableOrgCamp) {
         CGFloat fStatusNavBarHeight = 64.0f;
@@ -89,6 +90,8 @@
     }
     else {
         /* campaigns */
+        PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
+        [self.navigationController pushViewController:campVC animated:YES];
     }
 }
 

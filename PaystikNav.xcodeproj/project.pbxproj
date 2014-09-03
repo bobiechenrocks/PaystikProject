@@ -24,6 +24,9 @@
 		6852BDAA19B7D04600059565 /* PaystikOrgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDA919B7D04600059565 /* PaystikOrgViewController.m */; };
 		6852BDAF19B7D1EB00059565 /* PaystikOrgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */; };
 		6852BDB319B7D6DE00059565 /* UICommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDB219B7D6DE00059565 /* UICommonUtility.m */; };
+		6852BDB619B7DCA200059565 /* PaystikCampViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDB519B7DCA200059565 /* PaystikCampViewController.m */; };
+		6852BDB919B7DDB100059565 /* PaystikCampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDB819B7DDB100059565 /* PaystikCampCell.m */; };
+		6852BDBC19B7DE3C00059565 /* PaystikCampDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDBB19B7DE3C00059565 /* PaystikCampDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,12 @@
 		6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikOrgCell.m; path = Modules/Organizations/PaystikOrgCell.m; sourceTree = "<group>"; };
 		6852BDB119B7D6DE00059565 /* UICommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommonUtility.h; sourceTree = "<group>"; };
 		6852BDB219B7D6DE00059565 /* UICommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommonUtility.m; sourceTree = "<group>"; };
+		6852BDB419B7DCA200059565 /* PaystikCampViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikCampViewController.h; path = Modules/Campaigns/PaystikCampViewController.h; sourceTree = "<group>"; };
+		6852BDB519B7DCA200059565 /* PaystikCampViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikCampViewController.m; path = Modules/Campaigns/PaystikCampViewController.m; sourceTree = "<group>"; };
+		6852BDB719B7DDB100059565 /* PaystikCampCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikCampCell.h; path = Modules/Campaigns/PaystikCampCell.h; sourceTree = "<group>"; };
+		6852BDB819B7DDB100059565 /* PaystikCampCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikCampCell.m; path = Modules/Campaigns/PaystikCampCell.m; sourceTree = "<group>"; };
+		6852BDBA19B7DE3C00059565 /* PaystikCampDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikCampDetailsViewController.h; path = Modules/Campaigns/PaystikCampDetailsViewController.h; sourceTree = "<group>"; };
+		6852BDBB19B7DE3C00059565 /* PaystikCampDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikCampDetailsViewController.m; path = Modules/Campaigns/PaystikCampDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +203,12 @@
 		6852BDAC19B7D06100059565 /* Campaigns */ = {
 			isa = PBXGroup;
 			children = (
+				6852BDB419B7DCA200059565 /* PaystikCampViewController.h */,
+				6852BDB519B7DCA200059565 /* PaystikCampViewController.m */,
+				6852BDB719B7DDB100059565 /* PaystikCampCell.h */,
+				6852BDB819B7DDB100059565 /* PaystikCampCell.m */,
+				6852BDBA19B7DE3C00059565 /* PaystikCampDetailsViewController.h */,
+				6852BDBB19B7DE3C00059565 /* PaystikCampDetailsViewController.m */,
 			);
 			name = Campaigns;
 			sourceTree = "<group>";
@@ -306,9 +321,12 @@
 			files = (
 				6852BDA519B7CB0B00059565 /* PaystikNavMainViewController.m in Sources */,
 				6852BDB319B7D6DE00059565 /* UICommonUtility.m in Sources */,
+				6852BDB919B7DDB100059565 /* PaystikCampCell.m in Sources */,
 				6852BDAA19B7D04600059565 /* PaystikOrgViewController.m in Sources */,
 				6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */,
 				6852BDAF19B7D1EB00059565 /* PaystikOrgCell.m in Sources */,
+				6852BDBC19B7DE3C00059565 /* PaystikCampDetailsViewController.m in Sources */,
+				6852BDB619B7DCA200059565 /* PaystikCampViewController.m in Sources */,
 				6852BD7F19B7CAC900059565 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
