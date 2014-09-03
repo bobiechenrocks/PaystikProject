@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6852BD7319B7CAC900059565 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7219B7CAC900059565 /* Foundation.framework */; };
+		6852BD7519B7CAC900059565 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7419B7CAC900059565 /* CoreGraphics.framework */; };
+		6852BD7719B7CAC900059565 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7619B7CAC900059565 /* UIKit.framework */; };
+		6852BD7D19B7CAC900059565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6852BD7B19B7CAC900059565 /* InfoPlist.strings */; };
+		6852BD7F19B7CAC900059565 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BD7E19B7CAC900059565 /* main.m */; };
+		6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BD8219B7CAC900059565 /* AppDelegate.m */; };
+		6852BD8519B7CAC900059565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6852BD8419B7CAC900059565 /* Images.xcassets */; };
+		6852BD8C19B7CACA00059565 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD8B19B7CACA00059565 /* XCTest.framework */; };
+		6852BD8D19B7CACA00059565 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7219B7CAC900059565 /* Foundation.framework */; };
+		6852BD8E19B7CACA00059565 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852BD7619B7CAC900059565 /* UIKit.framework */; };
+		6852BD9619B7CACA00059565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6852BD9419B7CACA00059565 /* InfoPlist.strings */; };
+		6852BD9819B7CACA00059565 /* PaystikNavTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BD9719B7CACA00059565 /* PaystikNavTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6852BD8F19B7CACA00059565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6852BD6719B7CAC900059565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6852BD6E19B7CAC900059565;
+			remoteInfo = PaystikNav;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6852BD6F19B7CAC900059565 /* PaystikNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaystikNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6852BD7219B7CAC900059565 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6852BD7419B7CAC900059565 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6852BD7619B7CAC900059565 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6852BD7A19B7CAC900059565 /* PaystikNav-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaystikNav-Info.plist"; sourceTree = "<group>"; };
+		6852BD7C19B7CAC900059565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6852BD7E19B7CAC900059565 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6852BD8019B7CAC900059565 /* PaystikNav-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PaystikNav-Prefix.pch"; sourceTree = "<group>"; };
+		6852BD8119B7CAC900059565 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6852BD8219B7CAC900059565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6852BD8419B7CAC900059565 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6852BD8A19B7CACA00059565 /* PaystikNavTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaystikNavTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6852BD8B19B7CACA00059565 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6852BD9319B7CACA00059565 /* PaystikNavTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaystikNavTests-Info.plist"; sourceTree = "<group>"; };
+		6852BD9519B7CACA00059565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6852BD9719B7CACA00059565 /* PaystikNavTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaystikNavTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6852BD6C19B7CAC900059565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD7519B7CAC900059565 /* CoreGraphics.framework in Frameworks */,
+				6852BD7719B7CAC900059565 /* UIKit.framework in Frameworks */,
+				6852BD7319B7CAC900059565 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6852BD8719B7CACA00059565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD8C19B7CACA00059565 /* XCTest.framework in Frameworks */,
+				6852BD8E19B7CACA00059565 /* UIKit.framework in Frameworks */,
+				6852BD8D19B7CACA00059565 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6852BD6619B7CAC900059565 = {
+			isa = PBXGroup;
+			children = (
+				6852BD7819B7CAC900059565 /* PaystikNav */,
+				6852BD9119B7CACA00059565 /* PaystikNavTests */,
+				6852BD7119B7CAC900059565 /* Frameworks */,
+				6852BD7019B7CAC900059565 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6852BD7019B7CAC900059565 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD6F19B7CAC900059565 /* PaystikNav.app */,
+				6852BD8A19B7CACA00059565 /* PaystikNavTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6852BD7119B7CAC900059565 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD7219B7CAC900059565 /* Foundation.framework */,
+				6852BD7419B7CAC900059565 /* CoreGraphics.framework */,
+				6852BD7619B7CAC900059565 /* UIKit.framework */,
+				6852BD8B19B7CACA00059565 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6852BD7819B7CAC900059565 /* PaystikNav */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD8119B7CAC900059565 /* AppDelegate.h */,
+				6852BD8219B7CAC900059565 /* AppDelegate.m */,
+				6852BD8419B7CAC900059565 /* Images.xcassets */,
+				6852BD7919B7CAC900059565 /* Supporting Files */,
+			);
+			path = PaystikNav;
+			sourceTree = "<group>";
+		};
+		6852BD7919B7CAC900059565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD7A19B7CAC900059565 /* PaystikNav-Info.plist */,
+				6852BD7B19B7CAC900059565 /* InfoPlist.strings */,
+				6852BD7E19B7CAC900059565 /* main.m */,
+				6852BD8019B7CAC900059565 /* PaystikNav-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6852BD9119B7CACA00059565 /* PaystikNavTests */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD9719B7CACA00059565 /* PaystikNavTests.m */,
+				6852BD9219B7CACA00059565 /* Supporting Files */,
+			);
+			path = PaystikNavTests;
+			sourceTree = "<group>";
+		};
+		6852BD9219B7CACA00059565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6852BD9319B7CACA00059565 /* PaystikNavTests-Info.plist */,
+				6852BD9419B7CACA00059565 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6852BD6E19B7CAC900059565 /* PaystikNav */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6852BD9B19B7CACA00059565 /* Build configuration list for PBXNativeTarget "PaystikNav" */;
+			buildPhases = (
+				6852BD6B19B7CAC900059565 /* Sources */,
+				6852BD6C19B7CAC900059565 /* Frameworks */,
+				6852BD6D19B7CAC900059565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaystikNav;
+			productName = PaystikNav;
+			productReference = 6852BD6F19B7CAC900059565 /* PaystikNav.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6852BD8919B7CACA00059565 /* PaystikNavTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6852BD9E19B7CACA00059565 /* Build configuration list for PBXNativeTarget "PaystikNavTests" */;
+			buildPhases = (
+				6852BD8619B7CACA00059565 /* Sources */,
+				6852BD8719B7CACA00059565 /* Frameworks */,
+				6852BD8819B7CACA00059565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6852BD9019B7CACA00059565 /* PBXTargetDependency */,
+			);
+			name = PaystikNavTests;
+			productName = PaystikNavTests;
+			productReference = 6852BD8A19B7CACA00059565 /* PaystikNavTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6852BD6719B7CAC900059565 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Bobie Chen";
+				TargetAttributes = {
+					6852BD8919B7CACA00059565 = {
+						TestTargetID = 6852BD6E19B7CAC900059565;
+					};
+				};
+			};
+			buildConfigurationList = 6852BD6A19B7CAC900059565 /* Build configuration list for PBXProject "PaystikNav" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6852BD6619B7CAC900059565;
+			productRefGroup = 6852BD7019B7CAC900059565 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6852BD6E19B7CAC900059565 /* PaystikNav */,
+				6852BD8919B7CACA00059565 /* PaystikNavTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6852BD6D19B7CAC900059565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD7D19B7CAC900059565 /* InfoPlist.strings in Resources */,
+				6852BD8519B7CAC900059565 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6852BD8819B7CACA00059565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD9619B7CACA00059565 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6852BD6B19B7CAC900059565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */,
+				6852BD7F19B7CAC900059565 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6852BD8619B7CACA00059565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6852BD9819B7CACA00059565 /* PaystikNavTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6852BD9019B7CACA00059565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6852BD6E19B7CAC900059565 /* PaystikNav */;
+			targetProxy = 6852BD8F19B7CACA00059565 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6852BD7B19B7CAC900059565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6852BD7C19B7CAC900059565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6852BD9419B7CACA00059565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6852BD9519B7CACA00059565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6852BD9919B7CACA00059565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6852BD9A19B7CACA00059565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6852BD9C19B7CACA00059565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaystikNav/PaystikNav-Prefix.pch";
+				INFOPLIST_FILE = "PaystikNav/PaystikNav-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6852BD9D19B7CACA00059565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaystikNav/PaystikNav-Prefix.pch";
+				INFOPLIST_FILE = "PaystikNav/PaystikNav-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6852BD9F19B7CACA00059565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PaystikNav.app/PaystikNav";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaystikNav/PaystikNav-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PaystikNavTests/PaystikNavTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6852BDA019B7CACA00059565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PaystikNav.app/PaystikNav";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaystikNav/PaystikNav-Prefix.pch";
+				INFOPLIST_FILE = "PaystikNavTests/PaystikNavTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6852BD6A19B7CAC900059565 /* Build configuration list for PBXProject "PaystikNav" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6852BD9919B7CACA00059565 /* Debug */,
+				6852BD9A19B7CACA00059565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6852BD9B19B7CACA00059565 /* Build configuration list for PBXNativeTarget "PaystikNav" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6852BD9C19B7CACA00059565 /* Debug */,
+				6852BD9D19B7CACA00059565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6852BD9E19B7CACA00059565 /* Build configuration list for PBXNativeTarget "PaystikNavTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6852BD9F19B7CACA00059565 /* Debug */,
+				6852BDA019B7CACA00059565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6852BD6719B7CAC900059565 /* Project object */;
+}
