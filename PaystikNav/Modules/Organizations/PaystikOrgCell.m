@@ -72,9 +72,17 @@
         
         NSString* strName = dictOrg[@"name"];
         [self.labelName setText:strName];
-        [self.labelName sizeToFit];
         
         CGRect frame = self.labelName.frame;
+        CGFloat fNameMaxWidth = 192.0f;
+        frame.size.width = fNameMaxWidth;
+        self.labelName.frame = frame;
+        [self.labelName sizeToFit];
+        
+        frame = self.labelName.frame;
+        if (frame.size.width > fNameMaxWidth) {
+            frame.size.width = fNameMaxWidth;
+        }
         CGFloat fNameMarginLeft = 5.0f;
         frame.origin.x = fLogoMarginLeft + fLogoWidth + fNameMarginLeft;
         frame.origin.y = (self.contentView.frame.size.height - frame.size.height)/2.0f;

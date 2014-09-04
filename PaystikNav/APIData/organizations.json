@@ -1,0 +1,38 @@
+[
+	{
+        "guid": 1,
+        "name": "Pejman and Mar's",
+        "logo_url": "https://www.paystik.com/default_logo.jpg",
+        "coordinate": {
+            "latitude": 37.445342,
+            "longitude": -122.16547
+        }
+    },
+    {
+        "guid": 2,
+        "name": "Catholic Community at Stanford",
+        "logo_url": "https://s3-us-west-1.amazonaws.com/paystiks3/xHioi5c6SHu5jCPanrKA_55_383_1logo.jpeg",
+        "coordinate": {
+            "latitude": 37.425056,
+            "longitude": -122.170721
+        }
+    },
+    {
+        "guid": 3,
+        "name": "The Rock Church",
+        "logo_url": "https://s3-us-west-1.amazonaws.com/paystiks3/DLVp4hVqQViNhACmgQV2_109_382_1logo.png",
+        "coordinate": {
+            "latitude": 37.398674,
+            "longitude": -122.021089
+        }
+    },
+    {
+        "guid": 4,
+        "name": "Holy Spirit Church",
+        "logo_url": "https://www.paystik.com/default_logo.jpg",
+        "coordinate": {
+            "latitude": 37.557033,
+            "longitude": -122.003629
+        }
+    }
+]

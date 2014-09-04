@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Mary's Buddy Walk Donation",
+        "description": "Give to the annual Buddy Walk!",
+        "amount": 0,
+        "cover_url": "https://s3-us-west-1.amazonaws.com/paystiks3/gKPh1jt6Q6Wpqkj3nLvc_51495-349286-5sJlrrfhKKFv7WV-1.png",
+        "thumb_url": "https://www.paystik.com/default_thumb.jpg",
+        "coordinate": {
+            "latitude": 37.440486,
+            "longitude": -122.168453
+        }
+    },
+    {
+        "name": "General Donation",
+        "description": "Make a general donation",
+        "amount": 1,
+        "cover_url": "https://s3-us-west-1.amazonaws.com/paystiks3/gKPh1jt6Q6Wpqkj3nLvc_51495-349286-5sJlrrfhKKFv7WV-1.png",
+        "thumb_url": "https://www.paystik.com/default_thumb.jpg",
+        "coordinate": {
+            "latitude": 37.445342,
+            "longitude": -122.16547
+        }
+    }
+]

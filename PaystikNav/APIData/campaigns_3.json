@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Gifts",
+        "description": "The Rock Church is a place where people come to experience the authentic, powerful, life-changing presence of God. It is solely supported by you. Your generosity is greatly appreciated.",
+        "amount": 0,
+        "cover_url": "https://s3-us-west-1.amazonaws.com/paystiks3/iStock_helping_hands_ext.png",
+        "thumb_url": "https://s3-us-west-1.amazonaws.com/paystiks3/Si3YFuOTfufTFUc8iz36_109_382_2thumbnail.jpeg",
+        "coordinate": {
+            "latitude": 37.398674,
+            "longitude": -122.021089
+        }
+    }
+]

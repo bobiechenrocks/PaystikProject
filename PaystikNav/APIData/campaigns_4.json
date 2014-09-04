@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Holy Spirit Church Financial Stewardship",
+        "description": "A steward is defined as a disciple of Jesus who â€œreceives Godâ€™s gifts gratefully, cultivates them responsibly, shares them lovingly in justice with others and returns them with increase to the Lord.â€",
+        "amount": 0,
+        "cover_url": "https://s3-us-west-1.amazonaws.com/paystiks3/Charity.png",
+        "thumb_url": "https://s3-us-west-1.amazonaws.com/paystiks3/",
+        "coordinate": {
+            "latitude": 37.557033,
+            "longitude": -122.003629
+        }
+    }
+]

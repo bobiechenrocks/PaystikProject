@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Sunday Donation",
+        "description": "The Catholic Community at Stanford is solely supported by you. Your generosity is greatly appreciated.",
+        "amount": 0,
+        "cover_url": "https://s3-us-west-1.amazonaws.com/paystiks3/X3n29LNCRRqrPDMspyW7_55_383_3campaign.jpg",
+        "thumb_url": "https://s3-us-west-1.amazonaws.com/paystiks3/NDnJA4uHT2qcoLRf7VVx_55_383_2thumbnail.jpeg",
+        "coordinate": {
+            "latitude": 37.425056,
+            "longitude": -122.170721
+        }
+    }
+]
