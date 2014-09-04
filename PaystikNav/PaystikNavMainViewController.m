@@ -74,6 +74,7 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:strReusableId];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableId];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     
     cell.textLabel.text = (indexPath.row == 0)? @"Organizations" : @"Campaigns";

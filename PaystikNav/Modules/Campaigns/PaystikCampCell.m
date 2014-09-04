@@ -45,6 +45,8 @@
 
 - (void)prepareCampCell:(NSDictionary*)dictCamp
 {
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     self.dictCamp = dictCamp;
     
     CGFloat fThumbMarginLeft = 10.0f, fThumbWidth = 35.0f;

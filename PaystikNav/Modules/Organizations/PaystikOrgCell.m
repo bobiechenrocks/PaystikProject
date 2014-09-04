@@ -47,6 +47,8 @@
 
 - (void)prepareOrgCell:(NSDictionary*)dictOrg
 {
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     self.dictOrg = dictOrg;
     
     CGFloat fLogoMarginLeft = 10.0f, fLogoWidth = 35.0f;

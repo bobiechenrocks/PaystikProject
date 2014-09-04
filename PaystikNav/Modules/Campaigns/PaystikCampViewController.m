@@ -57,10 +57,14 @@
         self.tableCampaigns.dataSource = self;
         self.tableCampaigns.delegate = self;
     }
+    
+    BOOL bFetchLatestData = YES;
+    [self prepareCampData:bFetchLatestData];
 }
 
-- (void)prepareCampData
+- (void)prepareCampData:(BOOL)bFetchLatestData
 {
+    /* if there is cached data in user-defaults, use the data to load the table first */
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"]) {
         NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
         
@@ -73,9 +77,19 @@
                 }
             }
         }
+        
+        self.arrayCampaigns = arrayCampaigns;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableCampaigns reloadData];
+        });
     }
     
     /* in the mean time, fetch latest data via network asynchronously */
+    if (bFetchLatestData) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self _fetchCampData];
+        });
+    }
 }
 
 - (void)_fetchCampData
@@ -83,21 +97,106 @@
     BOOL bTestingPhase = YES;
     
     if (bTestingPhase) {
-        
+        [self _fetchCampDataViaFile];
     }
     else {
-        
+        [self _fetchCampDataViaNetwork];
     }
 }
 
-- (void)_fetchCampDataViaFile:(void (^)(NSArray*, NSError*))completion
+- (void)_fetchCampDataViaFile
 {
-    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"]) {
+        NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
+        
+        for (NSDictionary* dictOrg in arrayOrgs) {
+            if (dictOrg[@"guid"]) {
+                NSString* strGUID = [dictOrg[@"guid"] stringValue];
+                if (![strGUID isEqualToString:@""]) {
+                    NSString* strCampId = [NSString stringWithFormat:@"campaigns_%@", strGUID];
+                    
+                    NSString* strJSONFilePath = [[NSBundle mainBundle] pathForResource:strCampId ofType:@"json"];
+                    NSString* fileContent = [[NSString alloc] initWithContentsOfFile:strJSONFilePath encoding:NSUTF8StringEncoding error:nil];
+                    NSData* campData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
+                    NSError* error = nil;
+                    if (campData) {
+                        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:campData
+                                                                             options:NSJSONReadingMutableLeaves
+                                                                               error:&error];
+                        
+                        /* remember to update back to user-defaults */
+                        [self _updateCampaignOfOrg:strGUID campaigns:arrayData];
+                    }
+                }
+            }
+        }
+        
+        /* use this function to refresh tableview with latest organization/campaign data */
+        BOOL bFetchLatestData = NO;
+        [self prepareCampData:bFetchLatestData];
+    }
 }
 
-- (void)_fetchCampDataViaNetwork:(void (^)(NSArray*, NSError*))completion
+- (void)_updateCampaignOfOrg:(NSString*)strGUID campaigns:(NSArray*)arrayCampaigns
 {
+    if (!strGUID || [strGUID isEqualToString:@""]) {
+        return;
+    }
     
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"]) {
+        NSMutableArray* arrayUpdatedOrgs = [[[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"] mutableCopy];
+        for (int nIndex = 0; nIndex < [arrayUpdatedOrgs count]; ++nIndex) {
+            NSDictionary* dictOrg = [arrayUpdatedOrgs objectAtIndex:nIndex];
+            NSString* strId = [dictOrg[@"guid"] stringValue];
+            if ([strId isEqualToString:strGUID]) {
+                NSMutableDictionary* dictUpdatedOrg = [dictOrg mutableCopy];
+                dictUpdatedOrg[@"campaigns"] = arrayCampaigns;
+                [arrayUpdatedOrgs replaceObjectAtIndex:nIndex withObject:dictUpdatedOrg];
+                break;
+            }
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:arrayUpdatedOrgs forKey:@"PaystikOrganizations"];
+    }
+}
+
+- (void)_fetchCampDataViaNetwork
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"]) {
+        NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
+        
+        for (NSDictionary* dictOrg in arrayOrgs) {
+            if (dictOrg[@"guid"]) {
+                NSString* strGUID = [dictOrg[@"guid"] stringValue];
+                if (![strGUID isEqualToString:@""]) {
+                    
+                    /* fake API base */
+                    NSString* strAPIBase = @"http://paystik.com/s/api/campaigns";
+                    NSURL* apiURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?guid=%@", strAPIBase, strGUID]];
+                    NSURLRequest* request = [[NSURLRequest alloc] initWithURL:apiURL];
+                    NSOperationQueue* q = [[NSOperationQueue alloc] init];
+
+                    [NSURLConnection sendAsynchronousRequest:request queue:q completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                        
+                        if (connectionError) {
+                            /* do something */
+                            NSLog(@"%@", [connectionError localizedDescription]);
+                        }
+                        
+                        /* check status in response */
+                        
+                        /* data serialization: details skipped since we don't really know the exact returned data from the server */
+                        NSArray* arrayResults = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+                        [self _updateCampaignOfOrg:strGUID campaigns:arrayResults];
+                    }];
+                }
+            }
+        }
+        
+        /* use this function to refresh tableview with latest organization/campaign data */
+        BOOL bFetchLatestData = NO;
+        [self prepareCampData:bFetchLatestData];
+    }
 }
 
 #pragma mark - tableview data-source & delegate
@@ -112,7 +211,7 @@
         return [self.arrayCampaigns count];
     }
     else {
-        return 4;
+        return 0;
     }
 }
 
@@ -124,16 +223,10 @@
         cell = [[PaystikCampCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableId];
     }
     
-    
-    /* testing code */
-    NSDictionary* dictCamp = @{ @"name" : @"Holy Spirit Church Financial Stewardship",
-                                @"description" : @"A steward is defined as a disciple of Jesus who â€œreceives Godâ€™s gifts gratefully, cultivates them responsibly, shares them lovingly in justice with others and returns them with increase to the Lord.â€",
-                                @"amount" : @"0",
-                                @"cover_url" : @"https://s3-us-west-1.amazonaws.com/paystiks3/Charity.png",
-                                @"thumb_url" : @"https://s3-us-west-1.amazonaws.com/paystiks3/",
-                                @"coordinate" : @{ @"latitude" : @"37.557033",
-                                                   @"longitude" : @"-122.003629"}
-                               };
+    NSDictionary* dictCamp;
+    if (indexPath.row < [self.arrayCampaigns count]) {
+        dictCamp = [self.arrayCampaigns objectAtIndex:indexPath.row];
+    }
     [cell prepareCampCell:dictCamp];
     
     return cell;
@@ -141,15 +234,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /* testing code */
-    NSDictionary* dictCamp = @{ @"name" : @"Holy Spirit Church Financial Stewardship",
-                                @"description" : @"A steward is defined as a disciple of Jesus who â€œreceives Godâ€™s gifts gratefully, cultivates them responsibly, shares them lovingly in justice with others and returns them with increase to the Lord.â€",
-                                @"amount" : @"0",
-                                @"cover_url" : @"https://s3-us-west-1.amazonaws.com/paystiks3/Charity.png",
-                                @"thumb_url" : @"https://s3-us-west-1.amazonaws.com/paystiks3/",
-                                @"coordinate" : @{ @"latitude" : @"37.557033",
-                                                   @"longitude" : @"-122.003629"}
-                                };
+    NSDictionary* dictCamp;
+    if (indexPath.row < [self.arrayCampaigns count]) {
+        dictCamp = [self.arrayCampaigns objectAtIndex:indexPath.row];
+    }
     
     PaystikCampDetailsViewController* campDetailsVC = [[PaystikCampDetailsViewController alloc] init];
     [campDetailsVC prepareCampDetailedView:dictCamp];

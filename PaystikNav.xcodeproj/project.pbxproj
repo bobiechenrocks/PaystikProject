@@ -28,6 +28,10 @@
 		6852BDB919B7DDB100059565 /* PaystikCampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDB819B7DDB100059565 /* PaystikCampCell.m */; };
 		6852BDBC19B7DE3C00059565 /* PaystikCampDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDBB19B7DE3C00059565 /* PaystikCampDetailsViewController.m */; };
 		6852BDBE19B7F35C00059565 /* organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDBD19B7F35C00059565 /* organizations.json */; };
+		6852BDC319B8249A00059565 /* campaigns_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDBF19B8249A00059565 /* campaigns_1.json */; };
+		6852BDC419B8249A00059565 /* campaigns_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC019B8249A00059565 /* campaigns_2.json */; };
+		6852BDC519B8249A00059565 /* campaigns_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC119B8249A00059565 /* campaigns_3.json */; };
+		6852BDC619B8249A00059565 /* campaigns_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC219B8249A00059565 /* campaigns_4.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		6852BDBA19B7DE3C00059565 /* PaystikCampDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaystikCampDetailsViewController.h; path = Modules/Campaigns/PaystikCampDetailsViewController.h; sourceTree = "<group>"; };
 		6852BDBB19B7DE3C00059565 /* PaystikCampDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaystikCampDetailsViewController.m; path = Modules/Campaigns/PaystikCampDetailsViewController.m; sourceTree = "<group>"; };
 		6852BDBD19B7F35C00059565 /* organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = organizations.json; path = APIData/organizations.json; sourceTree = "<group>"; };
+		6852BDBF19B8249A00059565 /* campaigns_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_1.json; path = APIData/campaigns_1.json; sourceTree = "<group>"; };
+		6852BDC019B8249A00059565 /* campaigns_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_2.json; path = APIData/campaigns_2.json; sourceTree = "<group>"; };
+		6852BDC119B8249A00059565 /* campaigns_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_3.json; path = APIData/campaigns_3.json; sourceTree = "<group>"; };
+		6852BDC219B8249A00059565 /* campaigns_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_4.json; path = APIData/campaigns_4.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				6852BDBD19B7F35C00059565 /* organizations.json */,
+				6852BDBF19B8249A00059565 /* campaigns_1.json */,
+				6852BDC019B8249A00059565 /* campaigns_2.json */,
+				6852BDC119B8249A00059565 /* campaigns_3.json */,
+				6852BDC219B8249A00059565 /* campaigns_4.json */,
 			);
 			name = CachedData;
 			sourceTree = "<group>";
@@ -303,8 +315,12 @@
 			files = (
 				6852BD7D19B7CAC900059565 /* InfoPlist.strings in Resources */,
 				6852BD8519B7CAC900059565 /* Images.xcassets in Resources */,
+				6852BDC519B8249A00059565 /* campaigns_3.json in Resources */,
+				6852BDC419B8249A00059565 /* campaigns_2.json in Resources */,
 				6852BDBE19B7F35C00059565 /* organizations.json in Resources */,
 				6852BDA219B7CAD900059565 /* Storyboard.storyboard in Resources */,
+				6852BDC619B8249A00059565 /* campaigns_4.json in Resources */,
+				6852BDC319B8249A00059565 /* campaigns_1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
