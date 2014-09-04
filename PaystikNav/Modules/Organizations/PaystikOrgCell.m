@@ -51,9 +51,9 @@
     
     self.dictOrg = dictOrg;
     
-    CGFloat fLogoMarginLeft = 10.0f, fLogoWidth = 35.0f;
+    CGFloat fLogoMarginLeft = 10.0f, fLogoSize = 36.0f, fLogoMarginTop = 4.0f;
     if (!self.imageLogo) {
-        self.imageLogo = [[UIImageView alloc] initWithFrame:CGRectZero];
+        self.imageLogo = [[UIImageView alloc] initWithFrame:CGRectMake(fLogoMarginLeft, fLogoMarginTop, fLogoSize, fLogoSize)];
         [self.contentView addSubview:self.imageLogo];
         [self.imageLogo setBackgroundColor:[UIColor lightGrayColor]];
     }
@@ -86,7 +86,7 @@
             frame.size.width = fNameMaxWidth;
         }
         CGFloat fNameMarginLeft = 5.0f;
-        frame.origin.x = fLogoMarginLeft + fLogoWidth + fNameMarginLeft;
+        frame.origin.x = fLogoMarginLeft + fLogoSize + fNameMarginLeft;
         frame.origin.y = (self.contentView.frame.size.height - frame.size.height)/2.0f;
         self.labelName.frame = frame;
     }
@@ -141,7 +141,40 @@
 
 - (void)_fetchOrgLogoWithURL:(NSString*)strURL
 {
+    if (!strURL || [strURL isEqualToString:@""]) {
+        return;
+    }
     
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:strURL]];
+    NSOperationQueue* q = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:q completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            if (response && ((NSHTTPURLResponse*)response).statusCode == 200) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIImage* image = [UIImage imageWithData:data];
+                    self.imageLogo.image = image;
+                    
+                    CGFloat fLogoSize = 36.0f, fLogoMarginLeft = 10.0f, fLogoMarginTop = 4.0f;
+                    CGRect frame = self.imageLogo.frame;
+                    if (image.size.height/image.size.width > 1.0f) {
+                        /* portrait image */
+                        frame.size.height = fLogoSize;
+                        frame.size.width = fLogoSize*image.size.width / image.size.height;
+                        frame.origin.x = fLogoMarginLeft + (fLogoSize - frame.size.width)/2.0f;
+                        frame.origin.y = fLogoMarginTop;
+                    }
+                    else {
+                        /* landscape */
+                        frame.size.width = fLogoSize;
+                        frame.size.height = fLogoSize*image.size.height / image.size.width;
+                        frame.origin.y = fLogoMarginTop + (fLogoSize - frame.size.height)/2.0f;
+                        frame.origin.x = fLogoMarginLeft;
+                    }
+                    self.imageLogo.frame = frame;
+                });
+            }
+        }
+    }];
 }
 
 #pragma mark - button functions
