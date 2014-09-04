@@ -10,4 +10,6 @@
 
 @interface PaystikCampDetailsViewController : UIViewController
 
+- (void)prepareCampDetailedView:(NSDictionary*)dictCamp;
+
 @end

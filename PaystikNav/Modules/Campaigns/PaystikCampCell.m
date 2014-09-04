@@ -16,7 +16,7 @@
 @property (nonatomic, strong)UILabel* labelAmount;
 
 /* controls */
-@property (nonatomic, strong)NSDictionary* dictCamp;
+@property (nonatomic, weak)NSDictionary* dictCamp;
 
 @end
 
@@ -72,7 +72,7 @@
         NSString* strName = dictCamp[@"name"];
         [self.labelName setText:strName];
         
-        CGFloat fNameMaxWidth = 195.0f;
+        CGFloat fNameMaxWidth = 215.0f;
         CGRect frame = self.labelName.frame;
         frame.size.width = fNameMaxWidth;
         self.labelName.frame = frame;
