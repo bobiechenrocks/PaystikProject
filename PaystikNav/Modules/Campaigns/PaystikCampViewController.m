@@ -59,6 +59,47 @@
     }
 }
 
+- (void)prepareCampData
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"]) {
+        NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
+        
+        NSMutableArray* arrayCampaigns = [NSMutableArray arrayWithCapacity:0];
+        for (NSDictionary* dictOrg in arrayOrgs) {
+            if (dictOrg[@"campaigns"]) {
+                NSArray* arrayCamps = dictOrg[@"campaigns"];
+                for (NSDictionary* dictCamp in arrayCamps) {
+                    [arrayCampaigns addObject:dictCamp];
+                }
+            }
+        }
+    }
+    
+    /* in the mean time, fetch latest data via network asynchronously */
+}
+
+- (void)_fetchCampData
+{
+    BOOL bTestingPhase = YES;
+    
+    if (bTestingPhase) {
+        
+    }
+    else {
+        
+    }
+}
+
+- (void)_fetchCampDataViaFile:(void (^)(NSArray*, NSError*))completion
+{
+    
+}
+
+- (void)_fetchCampDataViaNetwork:(void (^)(NSArray*, NSError*))completion
+{
+    
+}
+
 #pragma mark - tableview data-source & delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
