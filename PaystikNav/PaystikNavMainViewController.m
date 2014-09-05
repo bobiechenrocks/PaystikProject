@@ -92,6 +92,7 @@
     else {
         /* campaigns */
         PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
+        [campVC prepareCampView:nil];
         [self.navigationController pushViewController:campVC animated:YES];
     }
 }

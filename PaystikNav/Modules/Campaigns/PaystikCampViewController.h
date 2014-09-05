@@ -10,4 +10,6 @@
 
 @interface PaystikCampViewController : UIViewController
 
+- (void)prepareCampView:(NSString*)strOrgGUID;
+
 @end

@@ -167,6 +167,7 @@
     PaystikOrgCell* cell = (PaystikOrgCell*)[tableView dequeueReusableCellWithIdentifier:strReusableId];
     if (!cell) {
         cell = [[PaystikOrgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableId];
+        cell.parentOrgView = self;
     }
     
     NSDictionary* dictOrg;

@@ -8,6 +8,8 @@
 
 #import "PaystikOrgCell.h"
 #import "UICommonUtility.h"
+#import "PaystikCampViewController.h"
+#import "PaystikOrgViewController.h"
 
 @interface PaystikOrgCell ()
 
@@ -185,7 +187,16 @@
 
 - (void)_campaignBtnClicked
 {
-    
+    if (self.dictOrg[@"guid"]) {
+        NSString* strGUID = [self.dictOrg[@"guid"] stringValue];
+        if (![strGUID isEqualToString:@""]) {
+            
+            PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
+            [campVC prepareCampView:strGUID];
+            [self.parentOrgView.navigationController pushViewController:campVC animated:YES];
+            
+        }
+    }
 }
 
 @end

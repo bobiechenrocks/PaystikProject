@@ -16,6 +16,7 @@
 @property (nonatomic, strong)UITableView* tableCampaigns;
 
 /* controls */
+@property (nonatomic, strong)NSString* strOrgGUID;
 @property (nonatomic, strong)NSArray* arrayCampaigns;
 
 @end
@@ -35,8 +36,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self prepareCampView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,9 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareCampView
+- (void)prepareCampView:(NSString*)strOrgGUID
 {
     self.title = @"Campaigns";
+    if (strOrgGUID && ![strOrgGUID isEqualToString:@""]) {
+        self.strOrgGUID = strOrgGUID;
+    }
     
     if (!self.tableCampaigns) {
         self.tableCampaigns = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)
@@ -70,7 +72,8 @@
         
         NSMutableArray* arrayCampaigns = [NSMutableArray arrayWithCapacity:0];
         for (NSDictionary* dictOrg in arrayOrgs) {
-            if (dictOrg[@"campaigns"]) {
+            NSString* strGUID = [dictOrg[@"guid"] stringValue];
+            if (dictOrg[@"campaigns"] && strGUID && [strGUID isEqualToString:self.strOrgGUID]) {
                 NSArray* arrayCamps = dictOrg[@"campaigns"];
                 for (NSDictionary* dictCamp in arrayCamps) {
                     [arrayCampaigns addObject:dictCamp];

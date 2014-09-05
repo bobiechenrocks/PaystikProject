@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PaystikOrgViewController;
 
 @interface PaystikOrgCell : UITableViewCell
+
+@property (nonatomic, weak)PaystikOrgViewController* parentOrgView;
 
 - (void)prepareOrgCell:(NSDictionary*)dictOrg;
 
