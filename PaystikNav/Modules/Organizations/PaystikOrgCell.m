@@ -10,6 +10,7 @@
 #import "UICommonUtility.h"
 #import "PaystikCampViewController.h"
 #import "PaystikOrgViewController.h"
+#import "PaystikOrgMapViewController.h"
 
 @interface PaystikOrgCell ()
 
@@ -182,7 +183,15 @@
 #pragma mark - button functions
 - (void)_mapBtnClicked
 {
-    
+    if (self.dictOrg[@"coordinate"]) {
+        NSDictionary* dictCoordinate = self.dictOrg[@"coordinate"];
+        NSString* strName = self.dictOrg[@"name"];
+        if (!strName) {strName = @"";}
+        PaystikOrgMapViewController* mapVC = [[PaystikOrgMapViewController alloc] init];
+        [mapVC prepareMapViewWithLocation:dictCoordinate andName:strName];
+        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mapVC];
+        [self.parentOrgView.navigationController presentViewController:navController animated:YES completion:nil];
+    }
 }
 
 - (void)_campaignBtnClicked

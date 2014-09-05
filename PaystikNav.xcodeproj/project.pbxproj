@@ -32,6 +32,7 @@
 		6852BDC419B8249A00059565 /* campaigns_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC019B8249A00059565 /* campaigns_2.json */; };
 		6852BDC519B8249A00059565 /* campaigns_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC119B8249A00059565 /* campaigns_3.json */; };
 		6852BDC619B8249A00059565 /* campaigns_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6852BDC219B8249A00059565 /* campaigns_4.json */; };
+		6852BDC919BA58CB00059565 /* PaystikOrgMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852BDC819BA58CB00059565 /* PaystikOrgMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		6852BDC019B8249A00059565 /* campaigns_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_2.json; path = APIData/campaigns_2.json; sourceTree = "<group>"; };
 		6852BDC119B8249A00059565 /* campaigns_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_3.json; path = APIData/campaigns_3.json; sourceTree = "<group>"; };
 		6852BDC219B8249A00059565 /* campaigns_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = campaigns_4.json; path = APIData/campaigns_4.json; sourceTree = "<group>"; };
+		6852BDC719BA58CB00059565 /* PaystikOrgMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaystikOrgMapViewController.h; sourceTree = "<group>"; };
+		6852BDC819BA58CB00059565 /* PaystikOrgMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaystikOrgMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 				6852BDA919B7D04600059565 /* PaystikOrgViewController.m */,
 				6852BDAD19B7D1EB00059565 /* PaystikOrgCell.h */,
 				6852BDAE19B7D1EB00059565 /* PaystikOrgCell.m */,
+				6852BDC719BA58CB00059565 /* PaystikOrgMapViewController.h */,
+				6852BDC819BA58CB00059565 /* PaystikOrgMapViewController.m */,
 			);
 			name = Organizations;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				6852BDAA19B7D04600059565 /* PaystikOrgViewController.m in Sources */,
 				6852BD8319B7CAC900059565 /* AppDelegate.m in Sources */,
 				6852BDAF19B7D1EB00059565 /* PaystikOrgCell.m in Sources */,
+				6852BDC919BA58CB00059565 /* PaystikOrgMapViewController.m in Sources */,
 				6852BDBC19B7DE3C00059565 /* PaystikCampDetailsViewController.m in Sources */,
 				6852BDB619B7DCA200059565 /* PaystikCampViewController.m in Sources */,
 				6852BD7F19B7CAC900059565 /* main.m in Sources */,

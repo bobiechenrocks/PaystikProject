@@ -8,6 +8,7 @@
 
 #import "PaystikCampDetailsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PaystikOrgMapViewController.h"
 
 @interface PaystikCampDetailsViewController ()
 
@@ -49,6 +50,7 @@
 
 - (void)prepareCampDetailedView:(NSDictionary*)dictCamp
 {
+    self.dictCamp = dictCamp;
     self.title = @"Camp Details";
     
     CGFloat fDefaultCoverWidth = self.view.frame.size.width, fDefaultCoverHeight = 200.0f;
@@ -232,7 +234,15 @@
 #pragma mark - button functions
 - (void)_mapBtnClicked
 {
-    
+    if (self.dictCamp[@"coordinate"]) {
+        NSDictionary* dictCoordinate = self.dictCamp[@"coordinate"];
+        NSString* strName = self.dictCamp[@"name"];
+        if (!strName) {strName = @"";}
+        PaystikOrgMapViewController* mapVC = [[PaystikOrgMapViewController alloc] init];
+        [mapVC prepareMapViewWithLocation:dictCoordinate andName:strName];
+        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mapVC];
+        [self.navigationController presentViewController:navController animated:YES completion:nil];
+    }
 }
 
 @end

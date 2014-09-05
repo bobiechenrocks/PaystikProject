@@ -4,6 +4,26 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--Paystik Org Map View Controller-->
+        <scene sceneID="Q3a-V6-hT3">
+            <objects>
+                <viewController id="N3r-gL-WRe" customClass="PaystikOrgMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sou-Np-nWL"/>
+                        <viewControllerLayoutGuide type="bottom" id="1NN-E4-prQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7ku-Hs-4cg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3xl-TC-rnz"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zEI-MV-W4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1786" y="707"/>
+        </scene>
         <!--Paystik Nav Main View Controller-->
         <scene sceneID="rBk-9P-rru">
             <objects>
@@ -41,6 +61,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mW4-eC-T1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="734" y="30"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o2O-qs-rUJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ztB-3m-GhF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="esI-QI-ZQF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="N3r-gL-WRe" kind="relationship" relationship="rootViewController" id="d3l-EO-DAd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVb-ng-Wgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1260" y="707"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

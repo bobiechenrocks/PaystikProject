@@ -71,12 +71,25 @@
         NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
         
         NSMutableArray* arrayCampaigns = [NSMutableArray arrayWithCapacity:0];
-        for (NSDictionary* dictOrg in arrayOrgs) {
-            NSString* strGUID = [dictOrg[@"guid"] stringValue];
-            if (dictOrg[@"campaigns"] && strGUID && [strGUID isEqualToString:self.strOrgGUID]) {
-                NSArray* arrayCamps = dictOrg[@"campaigns"];
-                for (NSDictionary* dictCamp in arrayCamps) {
-                    [arrayCampaigns addObject:dictCamp];
+        if (self.strOrgGUID && ![self.strOrgGUID isEqualToString:@""]) {
+            for (NSDictionary* dictOrg in arrayOrgs) {
+                NSString* strGUID = [dictOrg[@"guid"] stringValue];
+                if (dictOrg[@"campaigns"] && strGUID && [strGUID isEqualToString:self.strOrgGUID]) {
+                    NSArray* arrayCamps = dictOrg[@"campaigns"];
+                    for (NSDictionary* dictCamp in arrayCamps) {
+                        [arrayCampaigns addObject:dictCamp];
+                    }
+                    break;
+                }
+            }
+        }
+        else {
+            for (NSDictionary* dictOrg in arrayOrgs) {
+                if (dictOrg[@"campaigns"]) {
+                    NSArray* arrayCamps = dictOrg[@"campaigns"];
+                    for (NSDictionary* dictCamp in arrayCamps) {
+                        [arrayCampaigns addObject:dictCamp];
+                    }
                 }
             }
         }
