@@ -17,15 +17,13 @@
     return screenBound.size;
 }
 
-+ (UIColor*)hexToColor:(NSUInteger)hexValue withAlpha:(NSNumber*)alpha
++ (UIColor*)hexToColor:(NSUInteger)hexValue withAlpha:(CGFloat)fAlpha
 {
-    NSNumber* red = [NSNumber numberWithInt:(hexValue>>16)];
-    NSNumber* green = [NSNumber numberWithInt:((hexValue >> 8) & 0xFF)];
-    NSNumber* blue = [NSNumber numberWithInt:(hexValue & 0xFF)];
+    CGFloat fRed = ((hexValue >> 16) & 0xFF) / 255.0f;
+    CGFloat fGreen = ((hexValue >> 8) & 0xFF) / 255.0f;
+    CGFloat fBlue = (hexValue & 0xFF) / 255.0f;
     
-    float fAlpha = (alpha)? [alpha floatValue] : 1.0f;
-    UIColor* color = [UIColor colorWithRed:[red floatValue]/255.0f green:[green floatValue]/255.0f blue:[blue floatValue]/255.0f alpha:fAlpha];
-    
+    UIColor* color = [UIColor colorWithRed:fRed green:fGreen blue:fBlue alpha:fAlpha];
     return color;
 }
 

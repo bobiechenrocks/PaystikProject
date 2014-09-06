@@ -11,6 +11,6 @@
 @interface UICommonUtility : NSObject
 
 + (CGSize)getScreenSize;
-+ (UIColor*)hexToColor:(NSUInteger)hexValue withAlpha:(NSNumber*)alpha;
++ (UIColor*)hexToColor:(NSUInteger)hexValue withAlpha:(CGFloat)fAlpha;
 
 @end
