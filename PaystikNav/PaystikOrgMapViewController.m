@@ -83,6 +83,12 @@
     
     static NSString *reuseId = @"pin";
     MKPinAnnotationView *pav = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    if (!pav) {
+        pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+    }
+    else {
+        pav.annotation = annotation;
+    }
     
     pav.pinColor = MKPinAnnotationColorGreen;
     pav.canShowCallout = YES;
