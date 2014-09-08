@@ -8,9 +8,6 @@
 
 #import "PaystikOrgCell.h"
 #import "UICommonUtility.h"
-#import "PaystikCampViewController.h"
-#import "PaystikOrgViewController.h"
-#import "PaystikOrgMapViewController.h"
 
 @interface PaystikOrgCell ()
 
@@ -187,10 +184,10 @@
         NSDictionary* dictCoordinate = self.dictOrg[@"coordinate"];
         NSString* strName = self.dictOrg[@"name"];
         if (!strName) {strName = @"";}
-        PaystikOrgMapViewController* mapVC = [[PaystikOrgMapViewController alloc] init];
-        [mapVC prepareMapViewWithLocation:dictCoordinate andName:strName];
-        UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mapVC];
-        [self.parentOrgView.navigationController presentViewController:navController animated:YES completion:nil];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(showMapViewOfOrganizationWithLocation:andName:)]) {
+            [self.delegate showMapViewOfOrganizationWithLocation:dictCoordinate andName:strName];
+        }
     }
 }
 
@@ -200,10 +197,9 @@
         NSString* strGUID = [self.dictOrg[@"guid"] stringValue];
         if (![strGUID isEqualToString:@""]) {
             
-            PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
-            [campVC prepareCampView:strGUID];
-            [self.parentOrgView.navigationController pushViewController:campVC animated:YES];
-            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showCampOfOrganization:)]) {
+                [self.delegate showCampOfOrganization:strGUID];
+            }
         }
     }
 }

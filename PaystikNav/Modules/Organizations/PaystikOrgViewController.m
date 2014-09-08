@@ -8,8 +8,10 @@
 
 #import "PaystikOrgViewController.h"
 #import "PaystikOrgCell.h"
+#import "PaystikOrgMapViewController.h"
+#import "PaystikCampViewController.h"
 
-@interface PaystikOrgViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PaystikOrgViewController () <UITableViewDataSource, UITableViewDelegate, PaystikOrgCellDelegate>
 
 /* UI elements */
 @property (nonatomic, strong)UITableView* tableOrganizations;
@@ -167,7 +169,7 @@
     PaystikOrgCell* cell = (PaystikOrgCell*)[tableView dequeueReusableCellWithIdentifier:strReusableId];
     if (!cell) {
         cell = [[PaystikOrgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableId];
-        cell.parentOrgView = self;
+        cell.delegate = self;
     }
     
     NSDictionary* dictOrg;
@@ -178,6 +180,22 @@
     [cell prepareOrgCell:dictOrg];
     
     return cell;
+}
+
+#pragma mark - PaystikOrgCellDelegate
+- (void)showMapViewOfOrganizationWithLocation:(NSDictionary *)dictCoordinate andName:(NSString *)strName
+{
+    PaystikOrgMapViewController* mapVC = [[PaystikOrgMapViewController alloc] init];
+    [mapVC prepareMapViewWithLocation:dictCoordinate andName:strName];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mapVC];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)showCampOfOrganization:(NSString *)strOrgGUID
+{
+    PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
+    [campVC prepareCampView:strOrgGUID];
+    [self.navigationController pushViewController:campVC animated:YES];
 }
 
 @end

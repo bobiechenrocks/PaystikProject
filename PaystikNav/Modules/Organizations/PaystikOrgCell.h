@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-@class PaystikOrgViewController;
+
+@protocol PaystikOrgCellDelegate <NSObject>
+
+@optional
+- (void)showMapViewOfOrganizationWithLocation:(NSDictionary*)dictCoordinate andName:(NSString*)strName;
+- (void)showCampOfOrganization:(NSString*)strOrgGUID;
+
+@end
 
 @interface PaystikOrgCell : UITableViewCell
 
-@property (nonatomic, weak)PaystikOrgViewController* parentOrgView;
+@property (nonatomic, weak)id<PaystikOrgCellDelegate> delegate;
 
 - (void)prepareOrgCell:(NSDictionary*)dictOrg;
 
