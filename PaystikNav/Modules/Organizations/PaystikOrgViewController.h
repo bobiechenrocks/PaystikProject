@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaystikOrgViewController : UIViewController
+@interface PaystikOrgViewController : UITableViewController
 
 @end

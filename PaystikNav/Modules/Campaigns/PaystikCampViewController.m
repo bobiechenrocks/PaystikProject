@@ -10,14 +10,16 @@
 #import "PaystikCampCell.h"
 #import "PaystikCampDetailsViewController.h"
 
-@interface PaystikCampViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PaystikCampViewController () <UISearchDisplayDelegate>
 
 /* UI elements */
-@property (nonatomic, strong)UITableView* tableCampaigns;
+@property (nonatomic, strong)UISearchBar* searchBar;
+@property (nonatomic, strong)UISearchDisplayController* campSearchDisplayController;
 
 /* controls */
 @property (nonatomic, strong)NSString* strOrgGUID;
 @property (nonatomic, strong)NSArray* arrayCampaigns;
+@property (nonatomic, strong)NSArray* arrayCampSearchResults;
 
 @end
 
@@ -50,18 +52,26 @@
     if (strOrgGUID && ![strOrgGUID isEqualToString:@""]) {
         self.strOrgGUID = strOrgGUID;
     }
-    
-    if (!self.tableCampaigns) {
-        self.tableCampaigns = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)
-                                                           style:UITableViewStylePlain];
-        [self.view addSubview:self.tableCampaigns];
+
+    if (!self.campSearchDisplayController) {
         
-        self.tableCampaigns.dataSource = self;
-        self.tableCampaigns.delegate = self;
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, -44.0f, self.view.frame.size.width, 44.0f)];
+        self.tableView.tableHeaderView = self.searchBar;
+        
+        self.campSearchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+        self.campSearchDisplayController.delegate = self;
+        self.campSearchDisplayController.searchResultsTableView.dataSource = self;
+        self.campSearchDisplayController.searchResultsTableView.delegate = self;
     }
     
     BOOL bFetchLatestData = YES;
     [self prepareCampData:bFetchLatestData];
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR description contains[c] %@", searchText, searchText];
+    self.arrayCampSearchResults = [self.arrayCampaigns filteredArrayUsingPredicate:resultPredicate];
 }
 
 - (void)prepareCampData:(BOOL)bFetchLatestData
@@ -96,7 +106,7 @@
         
         self.arrayCampaigns = arrayCampaigns;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableCampaigns reloadData];
+            [self.tableView reloadData];
         });
     }
     
@@ -223,11 +233,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.arrayCampaigns && [self.arrayCampaigns count] != 0) {
-        return [self.arrayCampaigns count];
+    if (tableView == self.campSearchDisplayController.searchResultsTableView) {
+        if (self.arrayCampSearchResults && [self.arrayCampSearchResults count] != 0) {
+            return [self.arrayCampSearchResults count];
+        }
+        else {
+            return 0;
+        }
     }
     else {
-        return 0;
+        if (self.arrayCampaigns && [self.arrayCampaigns count] != 0) {
+            return [self.arrayCampaigns count];
+        }
+        else {
+            return 0;
+        }
     }
 }
 
@@ -240,8 +260,15 @@
     }
     
     NSDictionary* dictCamp;
-    if (indexPath.row < [self.arrayCampaigns count]) {
-        dictCamp = [self.arrayCampaigns objectAtIndex:indexPath.row];
+    if (tableView == self.campSearchDisplayController.searchResultsTableView) {
+        if (indexPath.row < [self.arrayCampSearchResults count]) {
+            dictCamp = [self.arrayCampSearchResults objectAtIndexedSubscript:indexPath.row];
+        }
+    }
+    else {
+        if (indexPath.row < [self.arrayCampaigns count]) {
+            dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+        }
     }
     [cell prepareCampCell:dictCamp];
     
@@ -251,13 +278,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary* dictCamp;
-    if (indexPath.row < [self.arrayCampaigns count]) {
-        dictCamp = [self.arrayCampaigns objectAtIndex:indexPath.row];
+    if (tableView == self.campSearchDisplayController.searchResultsTableView) {
+        if (indexPath.row < [self.arrayCampSearchResults count]) {
+            dictCamp = [self.arrayCampSearchResults objectAtIndexedSubscript:indexPath.row];
+        }
+    }
+    else {
+        if (indexPath.row < [self.arrayCampaigns count]) {
+            dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+        }
     }
     
     PaystikCampDetailsViewController* campDetailsVC = [[PaystikCampDetailsViewController alloc] init];
     [campDetailsVC prepareCampDetailedView:dictCamp];
     [self.navigationController pushViewController:campDetailsVC animated:YES];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaystikCampViewController : UIViewController
+@interface PaystikCampViewController : UITableViewController
 
 - (void)prepareCampView:(NSString*)strOrgGUID;
 

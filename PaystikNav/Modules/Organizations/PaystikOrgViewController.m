@@ -11,13 +11,15 @@
 #import "PaystikOrgMapViewController.h"
 #import "PaystikCampViewController.h"
 
-@interface PaystikOrgViewController () <UITableViewDataSource, UITableViewDelegate, PaystikOrgCellDelegate>
+@interface PaystikOrgViewController () <UISearchDisplayDelegate, PaystikOrgCellDelegate>
 
 /* UI elements */
-@property (nonatomic, strong)UITableView* tableOrganizations;
+@property (nonatomic, strong)UISearchBar* searchBar;
+@property (nonatomic, strong)UISearchDisplayController* orgSearchDisplayController;
 
 /* controls */
 @property (nonatomic, strong)NSArray* arrayOrganizations;
+@property (nonatomic, strong)NSArray* arrayOrgSearchResults;
 
 @end
 
@@ -51,14 +53,16 @@
     self.title = @"Organizations";
     
     [self prepareOrgData];
-    
-    if (!self.tableOrganizations) {
-        self.tableOrganizations = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)
-                                                               style:UITableViewStylePlain];
-        [self.view addSubview:self.tableOrganizations];
+
+    if (!self.orgSearchDisplayController) {
         
-        self.tableOrganizations.dataSource = self;
-        self.tableOrganizations.delegate = self;
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, -44.0f, self.view.frame.size.width, 44.0f)];
+        self.tableView.tableHeaderView = self.searchBar;
+        
+        self.orgSearchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+        self.orgSearchDisplayController.delegate = self;
+        self.orgSearchDisplayController.searchResultsTableView.dataSource = self;
+        self.orgSearchDisplayController.searchResultsTableView.delegate = self;
     }
 }
 
@@ -80,7 +84,7 @@
         [self _fetchOrgDataViaFile:^(NSArray* arrayResults, NSError* error) {
             if (!error && [arrayResults count]) {
                 self.arrayOrganizations = arrayResults;
-                [self.tableOrganizations reloadData];
+                [self.tableView reloadData];
                 [[NSUserDefaults standardUserDefaults] setObject:arrayResults forKey:@"PaystikOrganizations"];
             }
             else {
@@ -95,7 +99,7 @@
         [self _fetchOrgDataViaNetwork:^(NSArray* arrayResults, NSError* error) {
             if (!error && [arrayResults count]) {
                 self.arrayOrganizations = arrayResults;
-                [self.tableOrganizations reloadData];
+                [self.tableView reloadData];
                 [[NSUserDefaults standardUserDefaults] setObject:arrayResults forKey:@"PaystikOrganizations"];
             }
             else {
@@ -147,6 +151,12 @@
     }];
 }
 
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    self.arrayOrgSearchResults = [self.arrayOrganizations filteredArrayUsingPredicate:resultPredicate];
+}
+
 #pragma mark - tableview data-source & delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -155,11 +165,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.arrayOrganizations && [self.arrayOrganizations count] != 0) {
-        return [self.arrayOrganizations count];
+    if (tableView == self.orgSearchDisplayController.searchResultsTableView) {
+        if (self.arrayOrgSearchResults) {
+            return [self.arrayOrgSearchResults count];
+        }
+        else {
+            return 0;
+        }
     }
     else {
-        return 0;
+        if (self.arrayOrganizations && [self.arrayOrganizations count] != 0) {
+            return [self.arrayOrganizations count];
+        }
+        else {
+            return 0;
+        }
     }
 }
 
@@ -173,13 +193,30 @@
     }
     
     NSDictionary* dictOrg;
-    if (indexPath.row < [self.arrayOrganizations count]) {
-        dictOrg = [self.arrayOrganizations objectAtIndexedSubscript:indexPath.row];
+    if (tableView == self.orgSearchDisplayController.searchResultsTableView) {
+        if (indexPath.row < [self.arrayOrgSearchResults count]) {
+            dictOrg = [self.arrayOrgSearchResults objectAtIndexedSubscript:indexPath.row];
+        }
     }
-
+    else {
+        if (indexPath.row < [self.arrayOrganizations count]) {
+            dictOrg = [self.arrayOrganizations objectAtIndexedSubscript:indexPath.row];
+        }
+    }
+    
     [cell prepareOrgCell:dictOrg];
     
     return cell;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 #pragma mark - PaystikOrgCellDelegate
