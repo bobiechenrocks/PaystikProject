@@ -11,6 +11,8 @@
 #import "PaystikCampViewController.h"
 #import "PaystikOrgCell.h"
 #import "PaystikCampCell.h"
+#import "PaystikOrgMapViewController.h"
+#import "PaystikCampDetailsViewController.h"
 
 @interface PaystikNavMainView () <UISearchDisplayDelegate, PaystikOrgCellDelegate>
 
@@ -85,13 +87,28 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR description contains[c] %@", searchText, searchText];
     self.arrayOrgSearchResults = [self.arrayOrgs filteredArrayUsingPredicate:resultPredicate];
     self.arrayCampSearchResults = [self.arrayCamps filteredArrayUsingPredicate:resultPredicate];
 }
 
-#pragma mark - Table view data source
+#pragma mark - PaystikOrgCellDelegate
+- (void)showMapViewOfOrganizationWithLocation:(NSDictionary *)dictCoordinate andName:(NSString *)strName
+{
+    PaystikOrgMapViewController* mapVC = [[PaystikOrgMapViewController alloc] init];
+    [mapVC prepareMapViewWithLocation:dictCoordinate andName:strName];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mapVC];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
 
+- (void)showCampOfOrganization:(NSString *)strOrgGUID
+{
+    PaystikCampViewController* campVC = [[PaystikCampViewController alloc] init];
+    [campVC prepareCampView:strOrgGUID];
+    [self.navigationController pushViewController:campVC animated:YES];
+}
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -172,6 +189,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.orgCampSearchDisplayController.searchResultsTableView) {
+        if (indexPath.section == 1) {
+            /* campaigns */
+            NSDictionary* dictCamp;
+            if (indexPath.row < [self.arrayCampSearchResults count]) {
+                dictCamp = [self.arrayCampSearchResults objectAtIndex:indexPath.row];
+            }
+            
+            PaystikCampDetailsViewController* campDetailsVC = [[PaystikCampDetailsViewController alloc] init];
+            [campDetailsVC prepareCampDetailedView:dictCamp];
+            [self.navigationController pushViewController:campDetailsVC animated:YES];
+        }
     }
     else {
         if (indexPath.row == 0) {
