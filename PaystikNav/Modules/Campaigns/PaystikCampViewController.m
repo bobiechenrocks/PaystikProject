@@ -10,7 +10,7 @@
 #import "PaystikCampCell.h"
 #import "PaystikCampDetailsViewController.h"
 
-@interface PaystikCampViewController () <UISearchDisplayDelegate>
+@interface PaystikCampViewController () <UISearchDisplayDelegate, UIActionSheetDelegate>
 
 /* UI elements */
 @property (nonatomic, strong)UISearchBar* searchBar;
@@ -20,16 +20,22 @@
 @property (nonatomic, strong)NSString* strOrgGUID;
 @property (nonatomic, strong)NSArray* arrayCampaigns;
 @property (nonatomic, strong)NSArray* arrayCampSearchResults;
+@property (nonatomic, strong)NSArray* arrayCampaignsByOrganizations;
 
 @end
 
-@implementation PaystikCampViewController
+@implementation PaystikCampViewController {
+    BOOL m_bAscendingAlphabetic;
+    BOOL m_bSortingByOrganizations;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        m_bAscendingAlphabetic = NO;
+        m_bSortingByOrganizations = NO;
     }
     return self;
 }
@@ -52,6 +58,10 @@
     if (strOrgGUID && ![strOrgGUID isEqualToString:@""]) {
         self.strOrgGUID = strOrgGUID;
     }
+    
+    UIBarButtonItem* btnSort = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                             target:self action:@selector(presentSortingOptions)];
+    self.navigationItem.rightBarButtonItem = btnSort;
 
     if (!self.campSearchDisplayController) {
         
@@ -81,6 +91,7 @@
         NSArray* arrayOrgs = [[NSUserDefaults standardUserDefaults] objectForKey:@"PaystikOrganizations"];
         
         NSMutableArray* arrayCampaigns = [NSMutableArray arrayWithCapacity:0];
+        self.arrayCampaignsByOrganizations = @[];
         if (self.strOrgGUID && ![self.strOrgGUID isEqualToString:@""]) {
             for (NSDictionary* dictOrg in arrayOrgs) {
                 NSString* strGUID = [dictOrg[@"guid"] stringValue];
@@ -89,6 +100,11 @@
                     for (NSDictionary* dictCamp in arrayCamps) {
                         [arrayCampaigns addObject:dictCamp];
                     }
+                    
+                    if ([arrayCamps count] > 0) {
+                        self.arrayCampaignsByOrganizations = [self.arrayCampaignsByOrganizations arrayByAddingObject:dictOrg];
+                    }
+                    
                     break;
                 }
             }
@@ -99,6 +115,10 @@
                     NSArray* arrayCamps = dictOrg[@"campaigns"];
                     for (NSDictionary* dictCamp in arrayCamps) {
                         [arrayCampaigns addObject:dictCamp];
+                    }
+                    
+                    if ([arrayCamps count] > 0) {
+                        self.arrayCampaignsByOrganizations = [self.arrayCampaignsByOrganizations arrayByAddingObject:dictOrg];
                     }
                 }
             }
@@ -225,10 +245,42 @@
     }
 }
 
+- (void)presentSortingOptions
+{
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Sort by" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Alphabetical Order", @"Organizations", nil];
+    
+    [sheet showInView:self.view];
+}
+
+#pragma mark - action-sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        /* alphabetical */
+        m_bSortingByOrganizations = NO;
+        
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                     ascending:!m_bAscendingAlphabetic];
+        m_bAscendingAlphabetic = !m_bAscendingAlphabetic;
+        self.arrayCampaigns = [self.arrayCampaigns sortedArrayUsingDescriptors:@[descriptor]];
+        [self.tableView reloadData];
+    }
+    else if (buttonIndex == 1) {
+        /* by organizations */
+        m_bSortingByOrganizations = YES;
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - tableview data-source & delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (m_bSortingByOrganizations) {
+        return [self.arrayCampaignsByOrganizations count];
+    }
+    else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -242,11 +294,17 @@
         }
     }
     else {
-        if (self.arrayCampaigns && [self.arrayCampaigns count] != 0) {
-            return [self.arrayCampaigns count];
+        if (m_bSortingByOrganizations) {
+            NSInteger nCount = 0;
+            if (section < [self.arrayCampaignsByOrganizations count]) {
+                NSDictionary* dictOrg = [self.arrayCampaignsByOrganizations objectAtIndex:section];
+                NSArray* arrayCamps = dictOrg[@"campaigns"];
+                nCount = [arrayCamps count];
+            }
+            return nCount;
         }
         else {
-            return 0;
+            return [self.arrayCampaigns count];
         }
     }
 }
@@ -266,8 +324,19 @@
         }
     }
     else {
-        if (indexPath.row < [self.arrayCampaigns count]) {
-            dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+        if (m_bSortingByOrganizations) {
+            if (indexPath.section < [self.arrayCampaignsByOrganizations count]) {
+                NSDictionary* dictOrg = [self.arrayCampaignsByOrganizations objectAtIndex:indexPath.section];
+                NSArray* arrayCamps = dictOrg[@"campaigns"];
+                if (indexPath.row < [arrayCamps count]) {
+                    dictCamp = [arrayCamps objectAtIndex:indexPath.row];
+                }
+            }
+        }
+        else {
+            if (indexPath.row < [self.arrayCampaigns count]) {
+                dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+            }
         }
     }
     [cell prepareCampCell:dictCamp];
@@ -284,14 +353,39 @@
         }
     }
     else {
-        if (indexPath.row < [self.arrayCampaigns count]) {
-            dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+        if (m_bSortingByOrganizations) {
+            if (indexPath.section < [self.arrayCampaignsByOrganizations count]) {
+                NSDictionary* dictOrg = [self.arrayCampaignsByOrganizations objectAtIndex:indexPath.section];
+                NSArray* arrayCamps = dictOrg[@"campaigns"];
+                if (indexPath.row < [arrayCamps count]) {
+                    dictCamp = [arrayCamps objectAtIndex:indexPath.row];
+                }
+            }
+        }
+        else {
+            if (indexPath.row < [self.arrayCampaigns count]) {
+                dictCamp = [self.arrayCampaigns objectAtIndexedSubscript:indexPath.row];
+            }
         }
     }
     
     PaystikCampDetailsViewController* campDetailsVC = [[PaystikCampDetailsViewController alloc] init];
     [campDetailsVC prepareCampDetailedView:dictCamp];
     [self.navigationController pushViewController:campDetailsVC animated:YES];
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString* strSectionHeader = @"";
+    if (tableView == self.tableView && m_bSortingByOrganizations) {
+        if (section < [self.arrayCampaignsByOrganizations count]) {
+            NSDictionary* dictOrg = [self.arrayCampaignsByOrganizations objectAtIndex:section];
+            strSectionHeader = dictOrg[@"name"];
+            if (!strSectionHeader) {strSectionHeader = @"";}
+        }
+    }
+    
+    return strSectionHeader;
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
