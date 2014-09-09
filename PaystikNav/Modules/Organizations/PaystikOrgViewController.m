@@ -11,7 +11,7 @@
 #import "PaystikOrgMapViewController.h"
 #import "PaystikCampViewController.h"
 
-@interface PaystikOrgViewController () <UISearchDisplayDelegate, PaystikOrgCellDelegate>
+@interface PaystikOrgViewController () <UISearchDisplayDelegate, PaystikOrgCellDelegate, UIActionSheetDelegate>
 
 /* UI elements */
 @property (nonatomic, strong)UISearchBar* searchBar;
@@ -23,13 +23,16 @@
 
 @end
 
-@implementation PaystikOrgViewController
+@implementation PaystikOrgViewController {
+    BOOL m_bAscendingAlphabetic;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        m_bAscendingAlphabetic = NO;
     }
     return self;
 }
@@ -51,6 +54,10 @@
 - (void)prepareOrgView
 {
     self.title = @"Organizations";
+    
+    UIBarButtonItem* btnSort = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                             target:self action:@selector(presentSortingOptions)];
+    self.navigationItem.rightBarButtonItem = btnSort;
     
     [self prepareOrgData];
 
@@ -155,6 +162,26 @@
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     self.arrayOrgSearchResults = [self.arrayOrganizations filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (void)presentSortingOptions
+{
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Sort by" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Alphabetical Order",nil];
+
+    [sheet showInView:self.view];
+}
+
+#pragma mark - action-sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        /* alphabetical */
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                     ascending:!m_bAscendingAlphabetic];
+        m_bAscendingAlphabetic = !m_bAscendingAlphabetic;
+        self.arrayOrganizations = [self.arrayOrganizations sortedArrayUsingDescriptors:@[descriptor]];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - tableview data-source & delegate
